@@ -53,6 +53,10 @@ Collect promises resolved within a timeout when using `Promise.all([p])` and dis
 
 ```
 
+##Note:
+
+When using _**create-react-app**_ or when _babel-core_ is not part of your dependencies, use **v1.0.1**. This will be fixed soon.
+
 # Methods
 ## 1. getPartialPromises(promises[, options])
 Returns array of promises that will always resolve, either with their actual value or __options.resolveWith__ value
@@ -105,7 +109,7 @@ Same as _getPartialPromises_ but intead of returning array of promises, returns 
     - default is **_1_**
   - filter
     - filters out results that are same as _resolveWith_
-    - default is **_true_**
+    - default is **_false_**
 
 ```js
 const promises = [
@@ -116,7 +120,7 @@ const promises = [
       resolvePromise(5000)
     ];
 
-    const p = await getPartialResults(promises, { time: 3000 });
+    const p = await getPartialResults(promises, { time: 3000, filter: true });
     // [1000, 3000]
     // See ? You don't have to use Promise.all(p) & filter again like in getPartialPromises
 
